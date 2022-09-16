@@ -8,8 +8,9 @@ export const validate=data =>{
     }
 
     if(!data.email){
+       
         errors.email="Email requierd";
-    } else if(!/\s+@\s+\.\s+/.test(data.email)) {
+    } else if(! /\S+@\S+\.\S+/.test(data.email)) {
         errors.email="Email address is invalid"
     } else {
         delete data.email;
@@ -24,17 +25,17 @@ export const validate=data =>{
     }
 
     if(!data.confirmPassword) {
-        errors.confirmpassword ="confirm password is requied"
+        errors.confirmPassword ="confirm password is requied"
     } else if (data.confirmPassword !== data.password) {
-        errors.confirmpassword="password do not match"
+        errors.confirmPassword="password do not match"
     } else {
-        delete errors.confirmpassword
+        delete errors.confirmPassword
     }
 
-    if(data.isAccept) {
-        delete errors.isAccept
+    if(data.isAccepted) {
+        delete errors.isAccepted
     } else {
-        errors.isAccept = "requierd"
+        errors.isAccepted = "requierd"
     }
      
     return errors;
