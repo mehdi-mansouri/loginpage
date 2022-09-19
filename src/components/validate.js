@@ -1,6 +1,6 @@
 export const validate=data =>{
     const errors={}
-
+    console.log(data);
     if (!data.name.trim()){
         errors.name="Username requeired"
     } else {
@@ -8,12 +8,11 @@ export const validate=data =>{
     }
 
     if(!data.email){
-       
-        errors.email="Email requierd";
-    } else if(! /\S+@\S+\.\S+/.test(data.email)) {
+       errors.email="Email requierd";
+    } else if(!(/\S+@\S+\.\S+/.test(data.email))) {
         errors.email="Email address is invalid"
     } else {
-        delete data.email;
+        delete errors.email;
     }
 
     if(!data.password) {
