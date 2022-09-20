@@ -1,12 +1,5 @@
-export const validate=data =>{
+export const validate=(data,type) =>{
     const errors={}
-    console.log(data);
-    if (!data.name.trim()){
-        errors.name="Username requeired"
-    } else {
-        delete errors.name;
-    }
-
     if(!data.email){
        errors.email="Email requierd";
     } else if(!(/\S+@\S+\.\S+/.test(data.email))) {
@@ -23,18 +16,26 @@ export const validate=data =>{
         delete errors.password
     }
 
-    if(!data.confirmPassword) {
-        errors.confirmPassword ="confirm password is requied"
-    } else if (data.confirmPassword !== data.password) {
-        errors.confirmPassword="password do not match"
-    } else {
-        delete errors.confirmPassword
-    }
+    if(type==="signup"){
+        if (!data.name.trim()){
+            errors.name="Username requeired"
+        } else {
+            delete errors.name;
+        }
 
-    if(data.isAccepted) {
-        delete errors.isAccepted
-    } else {
-        errors.isAccepted = "requierd"
+        if(!data.confirmPassword) {
+            errors.confirmPassword ="confirm password is requied"
+        } else if (data.confirmPassword !== data.password) {
+            errors.confirmPassword="password do not match"
+        } else {
+            delete errors.confirmPassword
+        }
+        
+        if(data.isAccepted) {
+            delete errors.isAccepted
+        } else {
+            errors.isAccepted = "requierd"
+        }
     }
      
     return errors;
